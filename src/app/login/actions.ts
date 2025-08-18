@@ -1,35 +1,46 @@
 'use server'
 
 import { createClient } from '../../../utils/supabase/server'
+import { redirect } from 'next/navigation'
 
 /**
- * Send magic link login
+ * Login (password OR magic link)
  */
 export async function login(formData: FormData) {
     const supabase = await createClient()
     const email = formData.get('email') as string
+    const password = formData.get('password') as string | null
 
-    const { error } = await supabase.auth.signInWithOtp({
-        email,
-        options: {
-            // 🔑 Dynamically use correct redirect (local vs prod)
-            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/login`,
-        },
-    })
+    if (password) {
+        // 🔑 Login with email + password
+        const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        })
 
-    if (error) {
-        return { success: false, error: error.message }
+        if (error) {
+            return { success: false, error: error.message }
+        }
+
+        redirect('/')
+    } else {
+
+        const { error } = await supabase.auth.signInWithOtp({
+            email,
+            options: {
+                emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/`,
+            },
+        })
+
+        if (error) {
+            return { success: false, error: error.message }
+        }
+        redirect('/verify')
     }
-
-    return { success: true }
 }
 
-/**
- * Sign up with email+password
- */
 export async function signup(formData: FormData) {
     const supabase = await createClient()
-
     const email = formData.get('email') as string
     const password = formData.get('password') as string
 
@@ -37,8 +48,7 @@ export async function signup(formData: FormData) {
         email,
         password,
         options: {
-            // 🔑 Same redirect applies for signup
-            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}?next=/login`,
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/`,
         },
     })
 
@@ -46,6 +56,6 @@ export async function signup(formData: FormData) {
         return { success: false, error: error.message }
     }
 
-    // Let client-side handle UI navigation (e.g. "check your email" screen)
-    return { success: true }
+    // ✅ Send to verify page after signup
+    redirect('/verify')
 }
