@@ -16,26 +16,29 @@ export default function LoginPage() {
         return () => clearTimeout(timer)
     }, [])
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
 
-        if (actionType === 'login') {
-            const res = await login(formData)
-            if (res.success) {
-                router.push("/")
-            } else {
-                console.error(res.error)
+        startTransition(async () => {
+            if (actionType === 'login') {
+                const res = await login(formData)
+                if (res.success) {
+                    router.push("/")
+                } else {
+                    console.error(res.error)
+                }
+            } else if (actionType === 'signup') {
+                const res = await signup(formData)
+                if (res.success) {
+                    router.push("/login/verify")
+                } else {
+                    console.error(res.error)
+                }
             }
-        } else if (actionType === 'signup') {
-            const res = await signup(formData)
-            if (res.success) {
-                router.push("/login/verify")
-            } else {
-                console.error(res.error)
-            }
-        }
+        })
     }
+
 
 
     if (loading) {
@@ -88,24 +91,27 @@ export default function LoginPage() {
                 </div>
 
                 <div className="flex gap-4">
+                    {/* Log In Button */}
                     <button
-                        type="submit" // ✅ ensures form submits
+                        type="submit"
                         onClick={() => setActionType('login')}
                         disabled={isPending}
                         className={`w-full py-2 font-semibold rounded-lg transition text-white ${isPending && actionType === 'login'
-                            ? 'bg-indigo-400 opacity-50 cursor-not-allowed'
-                            : 'bg-indigo-500 hover:bg-indigo-600'
+                            ? 'bg-indigo-400 opacity-70 cursor-wait animate-pulse'
+                            : 'bg-indigo-500 hover:bg-indigo-600 active:scale-95'
                             }`}
                     >
                         {isPending && actionType === 'login' ? 'Logging in...' : 'Log In'}
                     </button>
+
+                    {/* Sign Up Button */}
                     <button
-                        type="submit" // ✅ ensures form submits
+                        type="submit"
                         onClick={() => setActionType('signup')}
                         disabled={isPending}
                         className={`w-full py-2 font-semibold rounded-lg transition text-white ${isPending && actionType === 'signup'
-                            ? 'bg-slate-600 opacity-50 cursor-not-allowed'
-                            : 'bg-slate-700 hover:bg-slate-800'
+                            ? 'bg-slate-600 opacity-70 cursor-wait animate-pulse'
+                            : 'bg-slate-700 hover:bg-slate-800 active:scale-95'
                             }`}
                     >
                         {isPending && actionType === 'signup' ? 'Signing up...' : 'Sign Up'}

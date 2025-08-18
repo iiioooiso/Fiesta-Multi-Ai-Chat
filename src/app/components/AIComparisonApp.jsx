@@ -218,7 +218,7 @@ export default function AIComparisonApp() {
 
             <div className="flex items-center gap-3">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-2 text-xs font-semibold flex items-center gap-1 text-gray-700 hover:text-gray-900 bg-white/30 hover:bg-white/50 backdrop-blur-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-lg border border-white/40"
@@ -307,8 +307,8 @@ export default function AIComparisonApp() {
                         <div className="max-w-[85%] group">
                           <div
                             className={`rounded-xl p-3 shadow-sm transition-transform ${message.error
-                                ? "bg-red-50 border border-red-200 text-red-700"
-                                : "bg-white/80 text-gray-800 border border-white/60"
+                              ? "bg-red-50 border border-red-200 text-red-700"
+                              : "bg-white/80 text-gray-800 border border-white/60"
                               }`}
                           >
                             <div className="text-xs leading-relaxed whitespace-pre-wrap font-medium">
@@ -327,8 +327,8 @@ export default function AIComparisonApp() {
                                   handleReaction(model.id, messageIndex, "thumbs-up")
                                 }
                                 className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${messageReactions[`${model.id}-${messageIndex}`] === "thumbs-up"
-                                    ? "bg-green-100 text-green-600"
-                                    : "text-gray-500 hover:text-green-600"
+                                  ? "bg-green-100 text-green-600"
+                                  : "text-gray-500 hover:text-green-600"
                                   }`}
                                 title="Thumbs up"
                               >
@@ -339,8 +339,8 @@ export default function AIComparisonApp() {
                                   handleReaction(model.id, messageIndex, "thumbs-down")
                                 }
                                 className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${messageReactions[`${model.id}-${messageIndex}`] === "thumbs-down"
-                                    ? "bg-red-100 text-red-600"
-                                    : "text-gray-500 hover:text-red-600"
+                                  ? "bg-red-100 text-red-600"
+                                  : "text-gray-500 hover:text-red-600"
                                   }`}
                                 title="Thumbs down"
                               >
@@ -355,8 +355,8 @@ export default function AIComparisonApp() {
                                   )
                                 }
                                 className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${copiedMessageId === `${model.id}-${messageIndex}`
-                                    ? "bg-blue-100 text-blue-600"
-                                    : "text-gray-500 hover:text-blue-600"
+                                  ? "bg-blue-100 text-blue-600"
+                                  : "text-gray-500 hover:text-blue-600"
                                   }`}
                                 title={
                                   copiedMessageId === `${model.id}-${messageIndex}`
@@ -429,8 +429,8 @@ export default function AIComparisonApp() {
                 type="submit"
                 disabled={!prompt.trim() || isLoading}
                 className={`absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 shadow-md ${prompt.trim() && !isLoading
-                    ? "bg-gradient-to-br from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 hover:scale-105 shadow-blue-200"
-                    : "bg-gray-300/60 text-gray-500 cursor-not-allowed"
+                  ? "bg-gradient-to-br from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 hover:scale-105 shadow-blue-200"
+                  : "bg-gray-300/60 text-gray-500 cursor-not-allowed"
                   }`}
               >
                 {isLoading ? (
