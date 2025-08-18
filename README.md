@@ -13,8 +13,7 @@ A **multimodal AI chat application** built with **Next.js + Supabase**, designed
 ## ✨ Features  
 
 - 🔐 Authentication (Supabase: Email/Password & Magic Link)  
-- 💬 Multi-model AI Chat (plug in OpenAI, Anthropic, etc.)  
-- 📸 Multimodal Inputs (text + image support, extendable)  
+- 💬 Multi-model AI Chat (plug in OpenAI, etc.)   
 - ⚡ Next.js 15 App Router (server actions, caching, layouts)  
 - 🎨 Beautiful UI with TailwindCSS + ShadCN  
 - 🌐 Zero-config deployment on Vercel  
@@ -26,6 +25,6 @@ A **multimodal AI chat application** built with **Next.js + Supabase**, designed
 ### 1. Clone & Install  
 
 ```bash
-git clone https://github.com/yourusername/multi-ai-chat.git
-cd multi-ai-chat
+git clone https://github.com/iiioooiso/Multi-Ai-Chat---Dhruv-Rathee--.git
+cd Multi-Ai-Chat---Dhruv-Rathee--
 npm install
