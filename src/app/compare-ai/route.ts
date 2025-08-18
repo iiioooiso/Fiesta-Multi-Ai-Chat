@@ -1,11 +1,5 @@
-import OpenAI from "openai";
 import { NextRequest, NextResponse } from "next/server";
-
-// Initialize OpenAI client via OpenRouter
-const openai = new OpenAI({
-    apiKey: process.env.OPENROUTER_API_KEY,
-    baseURL: "https://openrouter.ai/api/v1",
-});
+import fetch from "node-fetch"; // Needed if running in Node.js
 
 // Your frontend's "fake models"
 const aiModels = [
@@ -24,17 +18,32 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Missing prompt" }, { status: 400 });
         }
 
-        // Fire parallel requests to OpenRouter (all use the new model)
         const requests = aiModels.map(async (modelId) => {
             const start = Date.now();
             try {
-                const completion = await openai.chat.completions.create({
-                    model: "deepseek/deepseek-r1:free",
-                    messages: [{ role: "user", content: prompt }],
-                    temperature: 0.7 + Math.random() * 0.5, // slight variation per "model"
+                // Groq API request
+                const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+                    },
+                    body: JSON.stringify({
+                        model: "meta-llama/llama-4-scout-17b-16e-instruct", // You can parametrize per model if needed
+                        messages: [
+                            {
+                                role: "user",
+                                content: prompt,
+                            },
+                        ],
+                        temperature: 0.7 + Math.random() * 0.5,
+                    }),
                 });
 
-                const response = completion.choices?.[0]?.message?.content || "No response received";
+                const data = await res.json() as {
+                    choices?: { message?: { content?: string } }[];
+                };
+                const response = data.choices?.[0]?.message?.content || "No response received";
 
                 return {
                     modelId,
