@@ -38,7 +38,7 @@ export async function signup(formData: FormData) {
         password,
         options: {
             // 🔑 Same redirect applies for signup
-            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/login`,
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}?next=/login`,
         },
     })
 
