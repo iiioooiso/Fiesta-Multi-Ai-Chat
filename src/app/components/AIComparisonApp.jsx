@@ -7,12 +7,12 @@ import {
   Sparkles,
   Zap,
   Brain,
-  Compass,
   Star,
   Infinity,
   ThumbsUp,
   ThumbsDown,
   Copy,
+  Github,
 } from "lucide-react";
 
 export default function AIComparisonApp() {
@@ -203,7 +203,7 @@ export default function AIComparisonApp() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-gradient-to-br from-lavender-200/10 to-peach-200/10 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Glassmorphism Header - Now fully rounded */}
+      {/* Glassmorphism Header */}
       <header className="relative z-10 backdrop-blur-xl bg-white/20 border border-white/30 shadow-lg rounded-3xl mx-3 mt-3">
         <div className="px-4 py-4">
           <div className="flex items-center justify-between">
@@ -215,26 +215,37 @@ export default function AIComparisonApp() {
                 Compare responses from multiple AI models side-by-side
               </p>
             </div>
-            <button
-              onClick={clearAll}
-              className="px-4 py-2 text-xs font-semibold text-gray-700 hover:text-gray-900 bg-white/30 hover:bg-white/50 backdrop-blur-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-lg border border-white/40"
-            >
-              Clear All
-            </button>
+
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-2 text-xs font-semibold flex items-center gap-1 text-gray-700 hover:text-gray-900 bg-white/30 hover:bg-white/50 backdrop-blur-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-lg border border-white/40"
+              >
+                <Github size={14} /> GitHub
+              </a>
+              <button
+                onClick={clearAll}
+                className="px-4 py-2 text-xs font-semibold text-gray-700 hover:text-gray-900 bg-white/30 hover:bg-white/50 backdrop-blur-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-lg border border-white/40"
+              >
+                Clear All
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Chat Columns Container */}
-      <div className="flex-1 flex overflow-hidden relative z-10 p-3 gap-3">
-        {aiModels.map((model, index) => {
+      <div className="flex-1 flex overflow-x-auto md:overflow-hidden relative z-10 p-3 gap-3 scrollbar-hide">
+        {aiModels.map((model) => {
           const IconComponent = model.icon;
           const conversation = conversations[model.id] || [];
 
           return (
             <div
               key={model.id}
-              className="flex-1 flex flex-col bg-white/20 backdrop-blur-xl rounded-2xl shadow-xl border border-white/30 overflow-hidden"
+              className="flex-none md:flex-1 flex flex-col bg-white/20 backdrop-blur-xl rounded-2xl shadow-xl border border-white/30 overflow-hidden w-[90%] sm:w-[70%] md:w-auto"
             >
               {/* Model Header */}
               <div className="p-4 bg-white/30 backdrop-blur-sm border-b border-white/20">
@@ -268,7 +279,7 @@ export default function AIComparisonApp() {
                   msOverflowStyle: "none",
                   scrollBehavior: "smooth",
                   willChange: "scroll-position",
-                  transform: "translateZ(0)", // Hardware acceleration
+                  transform: "translateZ(0)",
                 }}
               >
                 {conversation.length === 0 ? (
@@ -296,8 +307,8 @@ export default function AIComparisonApp() {
                         <div className="max-w-[85%] group">
                           <div
                             className={`rounded-xl p-3 shadow-sm transition-transform ${message.error
-                              ? "bg-red-50 border border-red-200 text-red-700"
-                              : "bg-white/80 text-gray-800 border border-white/60"
+                                ? "bg-red-50 border border-red-200 text-red-700"
+                                : "bg-white/80 text-gray-800 border border-white/60"
                               }`}
                           >
                             <div className="text-xs leading-relaxed whitespace-pre-wrap font-medium">
@@ -309,22 +320,15 @@ export default function AIComparisonApp() {
                               </div>
                             )}
                           </div>
-                          {/* Action buttons */}
                           {!message.error && (
                             <div className="flex items-center space-x-1 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                               <button
                                 onClick={() =>
-                                  handleReaction(
-                                    model.id,
-                                    messageIndex,
-                                    "thumbs-up",
-                                  )
+                                  handleReaction(model.id, messageIndex, "thumbs-up")
                                 }
-                                className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${messageReactions[
-                                  `${model.id}-${messageIndex}`
-                                ] === "thumbs-up"
-                                  ? "bg-green-100 text-green-600"
-                                  : "text-gray-500 hover:text-green-600"
+                                className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${messageReactions[`${model.id}-${messageIndex}`] === "thumbs-up"
+                                    ? "bg-green-100 text-green-600"
+                                    : "text-gray-500 hover:text-green-600"
                                   }`}
                                 title="Thumbs up"
                               >
@@ -332,17 +336,11 @@ export default function AIComparisonApp() {
                               </button>
                               <button
                                 onClick={() =>
-                                  handleReaction(
-                                    model.id,
-                                    messageIndex,
-                                    "thumbs-down",
-                                  )
+                                  handleReaction(model.id, messageIndex, "thumbs-down")
                                 }
-                                className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${messageReactions[
-                                  `${model.id}-${messageIndex}`
-                                ] === "thumbs-down"
-                                  ? "bg-red-100 text-red-600"
-                                  : "text-gray-500 hover:text-red-600"
+                                className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${messageReactions[`${model.id}-${messageIndex}`] === "thumbs-down"
+                                    ? "bg-red-100 text-red-600"
+                                    : "text-gray-500 hover:text-red-600"
                                   }`}
                                 title="Thumbs down"
                               >
@@ -353,17 +351,15 @@ export default function AIComparisonApp() {
                                   handleCopyMessage(
                                     message.content,
                                     model.id,
-                                    messageIndex,
+                                    messageIndex
                                   )
                                 }
-                                className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${copiedMessageId ===
-                                  `${model.id}-${messageIndex}`
-                                  ? "bg-blue-100 text-blue-600"
-                                  : "text-gray-500 hover:text-blue-600"
+                                className={`p-1.5 rounded-lg text-xs transition-all duration-200 hover:bg-white/50 ${copiedMessageId === `${model.id}-${messageIndex}`
+                                    ? "bg-blue-100 text-blue-600"
+                                    : "text-gray-500 hover:text-blue-600"
                                   }`}
                                 title={
-                                  copiedMessageId ===
-                                    `${model.id}-${messageIndex}`
+                                  copiedMessageId === `${model.id}-${messageIndex}`
                                     ? "Copied!"
                                     : "Copy"
                                 }
@@ -384,7 +380,6 @@ export default function AIComparisonApp() {
                   ))
                 )}
 
-                {/* Loading indicator */}
                 {isLoading && (
                   <div className="flex justify-start">
                     <div className="bg-white/80 rounded-xl p-3 max-w-[85%] border border-white/60 shadow-sm">
@@ -395,17 +390,11 @@ export default function AIComparisonApp() {
                         ></div>
                         <div
                           className="w-1.5 h-1.5 rounded-full animate-bounce"
-                          style={{
-                            backgroundColor: model.accentColor,
-                            animationDelay: "0.1s",
-                          }}
+                          style={{ backgroundColor: model.accentColor, animationDelay: "0.1s" }}
                         ></div>
                         <div
                           className="w-1.5 h-1.5 rounded-full animate-bounce"
-                          style={{
-                            backgroundColor: model.accentColor,
-                            animationDelay: "0.2s",
-                          }}
+                          style={{ backgroundColor: model.accentColor, animationDelay: "0.2s" }}
                         ></div>
                       </div>
                     </div>
@@ -440,8 +429,8 @@ export default function AIComparisonApp() {
                 type="submit"
                 disabled={!prompt.trim() || isLoading}
                 className={`absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 shadow-md ${prompt.trim() && !isLoading
-                  ? "bg-gradient-to-br from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 hover:scale-105 shadow-blue-200"
-                  : "bg-gray-300/60 text-gray-500 cursor-not-allowed"
+                    ? "bg-gradient-to-br from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 hover:scale-105 shadow-blue-200"
+                    : "bg-gray-300/60 text-gray-500 cursor-not-allowed"
                   }`}
               >
                 {isLoading ? (
@@ -478,3 +467,4 @@ export default function AIComparisonApp() {
     </div>
   );
 }
+
