@@ -21,29 +21,22 @@ export default function LoginPage() {
         const formData = new FormData(e.currentTarget)
 
         if (actionType === 'login') {
-            startTransition(() => {
-                (async () => {
-                    try {
-                        await login(formData)
-                        router.push("/") // after login
-                    } catch (err) {
-                        console.error("Login failed:", err)
-                    }
-                })()
-            })
+            const res = await login(formData)
+            if (res.success) {
+                router.push("/")
+            } else {
+                console.error(res.error)
+            }
         } else if (actionType === 'signup') {
-            startTransition(() => {
-                (async () => {
-                    try {
-                        await signup(formData)
-                        router.push("/login/verify") // after signup
-                    } catch (err) {
-                        console.error("Signup failed:", err)
-                    }
-                })()
-            })
+            const res = await signup(formData)
+            if (res.success) {
+                router.push("/login/verify")
+            } else {
+                console.error(res.error)
+            }
         }
     }
+
 
     if (loading) {
         return (
@@ -100,8 +93,8 @@ export default function LoginPage() {
                         onClick={() => setActionType('login')}
                         disabled={isPending}
                         className={`w-full py-2 font-semibold rounded-lg transition text-white ${isPending && actionType === 'login'
-                                ? 'bg-indigo-400 opacity-50 cursor-not-allowed'
-                                : 'bg-indigo-500 hover:bg-indigo-600'
+                            ? 'bg-indigo-400 opacity-50 cursor-not-allowed'
+                            : 'bg-indigo-500 hover:bg-indigo-600'
                             }`}
                     >
                         {isPending && actionType === 'login' ? 'Logging in...' : 'Log In'}
@@ -111,8 +104,8 @@ export default function LoginPage() {
                         onClick={() => setActionType('signup')}
                         disabled={isPending}
                         className={`w-full py-2 font-semibold rounded-lg transition text-white ${isPending && actionType === 'signup'
-                                ? 'bg-slate-600 opacity-50 cursor-not-allowed'
-                                : 'bg-slate-700 hover:bg-slate-800'
+                            ? 'bg-slate-600 opacity-50 cursor-not-allowed'
+                            : 'bg-slate-700 hover:bg-slate-800'
                             }`}
                     >
                         {isPending && actionType === 'signup' ? 'Signing up...' : 'Sign Up'}

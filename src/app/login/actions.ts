@@ -12,31 +12,17 @@ export async function login(formData: FormData) {
     const password = formData.get('password') as string | null
 
     if (password) {
-        // 🔑 Login with email + password
-        const { error } = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        })
-
-        if (error) {
-            return { success: false, error: error.message }
-        }
-
-        redirect('/')
-    } else {
-
-        const { error } = await supabase.auth.signInWithOtp({
-            email,
-            options: {
-                emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/`,
-            },
-        })
-
-        if (error) {
-            return { success: false, error: error.message }
-        }
-        redirect('/verify')
+        const { error } = await supabase.auth.signInWithPassword({ email, password })
+        if (error) return { success: false, error: error.message }
+        return { success: true }
     }
+
+    const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/?next=/` },
+    })
+    if (error) return { success: false, error: error.message }
+    return { success: true, otp: true }
 }
 
 export async function signup(formData: FormData) {
@@ -48,7 +34,7 @@ export async function signup(formData: FormData) {
         email,
         password,
         options: {
-            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/`,
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}?next=/`,
         },
     })
 
@@ -56,6 +42,5 @@ export async function signup(formData: FormData) {
         return { success: false, error: error.message }
     }
 
-    // ✅ Send to verify page after signup
-    redirect('/verify')
+    redirect('/login/verify')
 }
