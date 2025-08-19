@@ -44,7 +44,7 @@ export default function ResetPassword({ code }: ResetPasswordProps) {
                 setMessage("Password updated! Redirecting to login...");
                 setTimeout(() => router.push("/login"), 2000);
             } else {
-                setMessage(res?.error || "Something went wrong");
+                setMessage("Please use a password you haven't used before.");
             }
         });
     };
