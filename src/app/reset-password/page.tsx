@@ -1,22 +1,22 @@
 'use client'
 
-export const dynamic = "force-dynamic";
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useState, useTransition, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { updatePassword } from './actions'
-import { Suspense } from 'react'
 
+export const dynamic = "force-dynamic";
 
 export default function ResetPasswordPage() {
     const [isPending, startTransition] = useTransition()
     const [message, setMessage] = useState<string | null>(null)
+    const [isClient, setIsClient] = useState(false) // detect client rendering
     const [loading, setLoading] = useState(true)
     const router = useRouter()
-    const searchParams = useSearchParams()
+    const searchParams = useSearchParams() // ✅ call at top level
     const code = searchParams.get('code')
 
-
     useEffect(() => {
+        setIsClient(true) // now we are sure we are on client
         if (!code) router.push('/forgot-password')
         const timer = setTimeout(() => setLoading(false), 1)
         return () => clearTimeout(timer)
@@ -24,8 +24,9 @@ export default function ResetPasswordPage() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const formData = new FormData(e.currentTarget)
+        if (!code) return
 
+        const formData = new FormData(e.currentTarget)
         const newPass = formData.get('new_password') as string
         const confirmPass = formData.get('confirm_password') as string
 
@@ -34,7 +35,7 @@ export default function ResetPasswordPage() {
             return
         }
 
-        formData.append('code', code || '')
+        formData.append('code', code)
 
         startTransition(async () => {
             const res = await updatePassword(formData)
@@ -47,7 +48,7 @@ export default function ResetPasswordPage() {
         })
     }
 
-    if (loading) {
+    if (!isClient || loading) {
         return (
             <main className="min-h-screen w-full flex items-center justify-center px-4 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/bg.png')" }}>
                 <div className="text-white text-2xl">Loading...</div>
