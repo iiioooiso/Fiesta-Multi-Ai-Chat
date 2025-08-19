@@ -1,10 +1,15 @@
+// app/reset-password/ResetPassword.tsx
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { updatePassword } from "./actions";
 
-export default function ResetPassword({ code }: { code: string | null }) {
+interface ResetPasswordProps {
+    code: string | null;
+}
+
+export default function ResetPassword({ code }: ResetPasswordProps) {
     const [isPending, startTransition] = useTransition();
     const [message, setMessage] = useState<string | null>(null);
     const [isClient, setIsClient] = useState(false);

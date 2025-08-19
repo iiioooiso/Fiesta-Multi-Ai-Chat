@@ -1,12 +1,12 @@
+// app/reset-password/page.tsx
+
 import ResetPassword from "./ResetPassword";
 
-interface PageProps {
-    searchParams?: { code?: string };
-}
+type PageProps = {
+    searchParams: Promise<{ code?: string }>;
+};
 
-export const dynamic = "force-dynamic";
-
-export default function Page({ searchParams }: PageProps) {
-    const code = searchParams?.code ?? null;
-    return <ResetPassword code={code} />;
+export default async function Page({ searchParams }: { searchParams: PageProps["searchParams"] }) {
+    const { code } = await searchParams;
+    return <ResetPassword code={code ?? null} />;
 }
