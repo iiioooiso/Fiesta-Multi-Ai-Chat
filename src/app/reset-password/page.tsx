@@ -1,5 +1,6 @@
 'use client'
 
+export const dynamic = "force-dynamic";
 import { useEffect, useState, useTransition } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { updatePassword } from './actions'
@@ -13,6 +14,7 @@ export default function ResetPasswordPage() {
     const router = useRouter()
     const searchParams = useSearchParams()
     const code = searchParams.get('code')
+
 
     useEffect(() => {
         if (!code) router.push('/forgot-password')
