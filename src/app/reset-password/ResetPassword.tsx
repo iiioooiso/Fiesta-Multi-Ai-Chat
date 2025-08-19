@@ -63,20 +63,17 @@ export default function ResetPassword({ code }: { code: string | null }) {
                     <label htmlFor="new_password" className="block text-sm font-medium text-gray-300 mb-1">
                         New Password
                     </label>
-                    <input id="new_password" name="new_password" type="password" required
-                        className="w-full px-4 py-2 rounded-lg bg-white/10 text-white border border-white/20 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition" />
+                    <input id="new_password" name="new_password" type="password" required className="w-full px-4 py-2 rounded-lg bg-white/10 text-white border border-white/20 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition" />
                 </div>
                 <div>
                     <label htmlFor="confirm_password" className="block text-sm font-medium text-gray-300 mb-1">
                         Confirm Password
                     </label>
-                    <input id="confirm_password" name="confirm_password" type="password" required
-                        className="w-full px-4 py-2 rounded-lg bg-white/10 text-white border border-white/20 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition" />
+                    <input id="confirm_password" name="confirm_password" type="password" required className="w-full px-4 py-2 rounded-lg bg-white/10 text-white border border-white/20 focus:ring-2 focus:ring-indigo-400 focus:outline-none transition" />
                 </div>
 
-                <button type="submit" disabled={isPending}
-                    className={`w-full py-2 font-semibold rounded-lg transition text-white ${isPending ? 'bg-indigo-400 opacity-70 cursor-wait animate-pulse' : 'bg-indigo-500 hover:bg-indigo-600 active:scale-95'}`}>
-                    {isPending ? 'Updating...' : 'Update Password'}
+                <button type="submit" disabled={isPending} className={`w-full py-2 font-semibold rounded-lg transition text-white ${isPending ? "bg-indigo-400 opacity-70 cursor-wait animate-pulse" : "bg-indigo-500 hover:bg-indigo-600 active:scale-95"}`}>
+                    {isPending ? "Updating..." : "Update Password"}
                 </button>
             </form>
         </main>
