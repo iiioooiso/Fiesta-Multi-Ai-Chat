@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
                         messages: [
                             {
                                 role: "user",
-                                content: prompt,
+                                content: prompt + " Give Unique Replpy not usual ones ",
                             },
                         ],
                         temperature: 0.7 + Math.random() * 0.5,
