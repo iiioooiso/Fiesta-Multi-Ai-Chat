@@ -1,15 +1,13 @@
 'use client'
 
 import { useEffect, useState, useTransition } from 'react'
-import { login } from './actions'
-import { useRouter } from "next/navigation"
+import { signup } from '../login/actions'
 import Link from "next/link"
 import { SiNextdotjs, SiSupabase } from "react-icons/si"
 
-export default function LoginPage() {
+export default function SignupPage() {
     const [loading, setLoading] = useState(true)
     const [isPending, startTransition] = useTransition()
-    const router = useRouter()
 
     useEffect(() => {
         const timer = setTimeout(() => setLoading(false), 1)
@@ -21,12 +19,8 @@ export default function LoginPage() {
         const formData = new FormData(e.currentTarget)
 
         startTransition(async () => {
-            const res = await login(formData)
-            if (res?.success) {
-                router.push("/")
-            } else if (res?.error) {
-                console.error(res.error)
-            }
+            // Server action will redirect to /login/verify on success
+            await signup(formData)
         })
     }
 
@@ -66,11 +60,14 @@ export default function LoginPage() {
                 className="w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl px-6 py-8 space-y-6"
             >
                 <h1 className="text-3xl md:text-4xl font-bold text-white text-center tracking-tight">
-                    Log in to your Account
+                    Create your Account
                 </h1>
 
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-300 mb-1"
+                    >
                         Email
                     </label>
                     <input
@@ -83,7 +80,10 @@ export default function LoginPage() {
                 </div>
 
                 <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label
+                        htmlFor="password"
+                        className="block text-sm font-medium text-gray-300 mb-1"
+                    >
                         Password
                     </label>
                     <input
@@ -99,21 +99,21 @@ export default function LoginPage() {
                     type="submit"
                     disabled={isPending}
                     className={`w-full py-2 font-semibold rounded-lg transition text-white ${isPending
-                            ? 'bg-indigo-400 opacity-70 cursor-wait animate-pulse'
-                            : 'bg-indigo-500 hover:bg-indigo-600 active:scale-95'
+                            ? 'bg-slate-600 opacity-70 cursor-wait animate-pulse'
+                            : 'bg-slate-700 hover:bg-slate-800 active:scale-95'
                         }`}
                 >
-                    {isPending ? 'Logging in...' : 'Log In'}
+                    {isPending ? 'Signing up...' : 'Sign Up'}
                 </button>
 
                 {/* Cross-link */}
                 <p className="text-sm text-gray-300 text-center">
-                    Don’t have an account?{' '}
+                    Already have an account?{' '}
                     <Link
-                        href="/signup"
+                        href="/login"
                         className="font-semibold text-indigo-300 hover:text-indigo-200 underline-offset-4 hover:underline"
                     >
-                        Sign up
+                        Log in
                     </Link>
                 </p>
             </form>
