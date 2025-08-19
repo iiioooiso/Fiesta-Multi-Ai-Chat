@@ -28,6 +28,6 @@ A **multimodal AI chat application** built with **Next.js + Supabase**, designed
 ### 1. Clone & Install  
 
 ```bash
-git clone https://github.com/iiioooiso/Multi-Ai-Chat---Dhruv-Rathee--.git
-cd Multi-Ai-Chat---Dhruv-Rathee--
+git clone https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat.git
+cd Fiesta-Multi-Ai-Chat
 npm install
