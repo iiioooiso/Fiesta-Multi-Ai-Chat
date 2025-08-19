@@ -6,7 +6,8 @@
   
 
 A **multimodal AI chat application** built with **Next.js + Supabase**, designed as a modern replacement for *Dhruv Rathee’s startup* — but open-source, extensible, and scalable.  
-<img width="1916" height="970" alt="image" src="https://github.com/user-attachments/assets/cf3ecc07-8b0f-43fa-b3d1-57705f3a8084" />
+<img width="1919" height="967" alt="image" src="https://github.com/user-attachments/assets/72070164-c229-4420-a4f8-2dac484f9ad8" />
+
 <img width="1919" height="955" alt="image" src="https://github.com/user-attachments/assets/2929012d-6cc6-42eb-ae32-4292de1c9c99" />
 
 
