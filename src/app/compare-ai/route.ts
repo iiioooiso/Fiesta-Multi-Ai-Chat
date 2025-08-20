@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import fetch from "node-fetch"; // Needed if running in Node.js
+import fetch from "node-fetch";
 
-// Your frontend's "fake models"
 const aiModels = [
     "chatgpt",
     "claude-sonnet-35",
@@ -17,7 +16,6 @@ export async function POST(req: NextRequest) {
         if (!prompt) {
             return NextResponse.json({ error: "Missing prompt" }, { status: 400 });
         }
-
         const requests = aiModels.map(async (modelId) => {
             const start = Date.now();
             try {
@@ -33,7 +31,8 @@ export async function POST(req: NextRequest) {
                         messages: [
                             {
                                 role: "user",
-                                content: prompt + " Give Unique Replpy not usual ones ",
+                                content: prompt + " Answer this in one unique way. Don't list multiple variations. Keep it concise and single-response."
+                                ,
                             },
                         ],
                         temperature: 0.7 + Math.random() * 0.5,
@@ -64,7 +63,6 @@ export async function POST(req: NextRequest) {
 
         const results = await Promise.all(requests);
 
-        // Transform results into frontend-friendly structure
         const responses: Record<string, { response: string; responseTime: number; error: boolean }> = {};
         results.forEach((r) => {
             responses[r.modelId] = {
