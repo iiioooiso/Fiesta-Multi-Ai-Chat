@@ -74,7 +74,7 @@ export default function LoginPage() {
             {/* Hero Section: Intro + Login */}
             <section className="flex flex-col md:flex-row flex-1 w-full px-6 py-16 gap-12 items-center justify-center">
 
-                {/* Intro Left (hidden on mobile) */}
+                {/* Intro Left (desktop) */}
                 <div className="hidden md:flex flex-1 flex-col justify-center max-w-xl">
                     <h2 className="text-5xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
                         <span className="text-white">Hello </span>
@@ -87,7 +87,7 @@ export default function LoginPage() {
                     <div className="mt-8 space-y-5 text-lg text-gray-200 leading-relaxed">
                         <p>Today, I’m going to expose… oh wait… <span className="font-semibold text-white">introduce</span> you to my revolutionary startup.</p>
                         <p>You might be thinking: <span className="italic text-gray-100">“Arre, yeh toh bas kuch APIs ka wrapper hai?”</span></p>
-                        <p>And you’re absolutely correct </p>
+                        <p>And you’re absolutely correct.</p>
                         <p>But when <span className="font-semibold text-white">I</span> do it, it magically becomes… <span className="text-pink-400 font-extrabold tracking-wide">INNOVATION™</span></p>
                     </div>
                 </div>
@@ -139,6 +139,24 @@ export default function LoginPage() {
                     </p>
                 </form>
             </section>
+
+            {/* Intro (mobile only, under login box) */}
+            <section className="md:hidden px-6 mt-8 text-center">
+                <h2 className="text-4xl font-extrabold leading-tight drop-shadow-lg">
+                    <span className="text-white">Hello </span>
+                    <span className="bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 bg-clip-text text-transparent">
+                        Dosto
+                    </span>
+                    <span className="text-white">!</span>
+                </h2>
+                <div className="mt-6 space-y-4 text-base text-gray-200 leading-relaxed">
+                    <p>Today, I’m going to expose… oh wait… <span className="font-semibold text-white">introduce</span> you to my revolutionary startup.</p>
+                    <p>You might be thinking: <span className="italic text-gray-100">“Arre, yeh toh bas kuch APIs ka wrapper hai?”</span></p>
+                    <p>And you’re absolutely correct.</p>
+                    <p>But when <span className="font-semibold text-white">I</span> do it, it magically becomes… <span className="text-pink-400 font-extrabold">INNOVATION™</span></p>
+                </div>
+            </section>
+
             {/* Qualities Grid */}
             <section className="px-6 py-16">
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
