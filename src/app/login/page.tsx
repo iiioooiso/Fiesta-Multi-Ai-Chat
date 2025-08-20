@@ -1,11 +1,11 @@
 'use client'
-
+import { SiGithub } from "react-icons/si"
 import { useEffect, useState, useTransition } from 'react'
 import { login } from './actions'
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { SiNextdotjs, SiSupabase } from "react-icons/si"
-import { Zap, Cpu, MessageSquare, Bot } from "lucide-react"
+import { Zap, Cpu, Bot } from "lucide-react"
 
 export default function LoginPage() {
     const [loading, setLoading] = useState(true)
@@ -143,10 +143,9 @@ export default function LoginPage() {
                                 Low-latency API built for scale & performance.
                             </p>
                         </div>
-
                         <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
-                            <MessageSquare className="mx-auto md:mx-0 text-indigo-400 w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">Free & Open Sourced</h3>
+                            <SiGithub className="mx-auto md:mx-0 text-white w-10 h-10" />
+                            <h3 className="mt-4 text-lg font-semibold text-white">🛠️ Free & Open Sourced</h3>
                             <p className="mt-2 text-gray-300 text-sm">
                                 Explore the code, contribute, and help shape the future.<br />
                                 <Link href="https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat" target="_blank"
