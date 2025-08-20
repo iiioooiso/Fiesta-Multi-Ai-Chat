@@ -44,6 +44,17 @@ export default function LoginPage() {
     return (
         <main className="min-h-screen w-full flex flex-col md:flex-row bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/bg.png')" }}>
+            <a
+                href="https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-4 right-4 flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 
+             backdrop-blur-md rounded-full shadow-lg text-white text-sm font-semibold hover:bg-white/20 
+             transition active:scale-95"
+            >
+                <SiGithub className="w-5 h-5 text-white" />
+                Star it
+            </a>
 
             {/* LOGIN FIRST ON MOBILE, SECOND ON DESKTOP */}
             <section className="order-1 md:order-2 flex-1 flex flex-col items-center justify-center px-6 py-12">
