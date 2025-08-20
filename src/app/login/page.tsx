@@ -156,7 +156,7 @@ export default function LoginPage() {
                         </div>
                         <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
                             <SiGithub className="mx-auto md:mx-0 text-white w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">🛠️ Free & Open Sourced</h3>
+                            <h3 className="mt-4 text-lg font-semibold text-white">Free & Open Sourced</h3>
                             <p className="mt-2 text-gray-300 text-sm">
                                 Explore the code, contribute, and help shape the future.<br />
                                 <Link href="https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat" target="_blank"
