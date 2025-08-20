@@ -129,7 +129,7 @@ export default function LoginPage() {
 
                         <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
                             <Bot className="mx-auto md:mx-0 text-pink-400 w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">🤖 6 AI Personalities</h3>
+                            <h3 className="mt-4 text-lg font-semibold text-white">6 AI Personalities</h3>
                             <p className="mt-2 text-gray-300 text-sm">
                                 Chat with <span className="text-pink-300 font-bold">six different AIs</span>,
                                 each with unique styles & knowledge. Select what best suits you!
@@ -138,7 +138,7 @@ export default function LoginPage() {
 
                         <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
                             <Cpu className="mx-auto md:mx-0 text-emerald-400 w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">🚀 Optimized Backend</h3>
+                            <h3 className="mt-4 text-lg font-semibold text-white">Optimized Backend</h3>
                             <p className="mt-2 text-gray-300 text-sm">
                                 Low-latency API built for scale & performance.
                             </p>
@@ -146,9 +146,13 @@ export default function LoginPage() {
 
                         <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
                             <MessageSquare className="mx-auto md:mx-0 text-indigo-400 w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">💬 Seamless Conversations</h3>
+                            <h3 className="mt-4 text-lg font-semibold text-white">Free & Open Sourced</h3>
                             <p className="mt-2 text-gray-300 text-sm">
-                                Natural, responsive, and uninterrupted chats.
+                                Explore the code, contribute, and help shape the future.<br />
+                                <Link href="https://github.com/your-repo" target="_blank"
+                                    className="text-indigo-300 hover:text-indigo-200 underline">
+                                    ⭐ Star it on GitHub
+                                </Link>
                             </p>
                         </div>
                     </div>
