@@ -1,10 +1,9 @@
 'use client'
-import { SiGithub } from "react-icons/si"
+import { SiGithub, SiNextdotjs, SiSupabase, SiLinkedin } from "react-icons/si"
 import { useEffect, useState, useTransition } from 'react'
 import { login } from './actions'
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { SiNextdotjs, SiSupabase } from "react-icons/si"
 import { Zap, Cpu, Bot } from "lucide-react"
 
 export default function LoginPage() {
@@ -42,8 +41,10 @@ export default function LoginPage() {
     }
 
     return (
-        <main className="min-h-screen w-full flex flex-col md:flex-row bg-cover bg-center bg-no-repeat"
+        <main className="min-h-screen w-full flex flex-col bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/bg.png')" }}>
+
+            {/* GitHub Button */}
             <a
                 href="https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat"
                 target="_blank"
@@ -56,29 +57,47 @@ export default function LoginPage() {
                 Star it
             </a>
 
-            {/* LOGIN FIRST ON MOBILE, SECOND ON DESKTOP */}
-            <section className="order-1 md:order-2 flex-1 flex flex-col items-center justify-center px-6 py-12">
+            {/* Heading Center Top */}
+            <div className="mt-20 text-center">
+                <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+                    Multimodal AI Chat Application
+                </h1>
+                <p className="mt-3 flex items-center justify-center gap-2 text-gray-300 text-sm md:text-base">
+                    Built with
+                    <SiNextdotjs className="text-white text-xl" title="Next.js" />
+                    Next.js +
+                    <SiSupabase className="text-emerald-400 text-xl" title="Supabase" />
+                    Supabase
+                </p>
+            </div>
 
-                {/* HEADER ABOVE LOGIN */}
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight drop-shadow-lg">
-                        Multimodal AI Chat Application
-                    </h1>
-                    <p className="mt-3 flex items-center justify-center gap-2 text-gray-300 text-sm md:text-base">
-                        Built with
-                        <SiNextdotjs className="text-white text-xl" title="Next.js" />
-                        Next.js +
-                        <SiSupabase className="text-emerald-400 text-xl" title="Supabase" />
-                        Supabase
-                    </p>
+            {/* Hero Section: Intro + Login */}
+            <section className="flex flex-col md:flex-row flex-1 w-full px-6 py-16 gap-12 items-center justify-center">
+
+                {/* Intro Left (hidden on mobile) */}
+                <div className="hidden md:flex flex-1 flex-col justify-center max-w-xl">
+                    <h2 className="text-5xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
+                        <span className="text-white">Hello </span>
+                        <span className="bg-gradient-to-r from-indigo-400 via-pink-400 to-purple-500 bg-clip-text text-transparent">
+                            Dosto
+                        </span>
+                        <span className="text-white">!</span>
+                    </h2>
+
+                    <div className="mt-8 space-y-5 text-lg text-gray-200 leading-relaxed">
+                        <p>Today, I’m going to expose… oh wait… <span className="font-semibold text-white">introduce</span> you to my revolutionary startup.</p>
+                        <p>You might be thinking: <span className="italic text-gray-100">“Arre, yeh toh bas kuch APIs ka wrapper hai?”</span></p>
+                        <p>And you’re absolutely correct </p>
+                        <p>But when <span className="font-semibold text-white">I</span> do it, it magically becomes… <span className="text-pink-400 font-extrabold tracking-wide">INNOVATION™</span></p>
+                    </div>
                 </div>
 
-                {/* LOGIN FORM */}
+                {/* Login Right */}
                 <form
                     onSubmit={handleSubmit}
-                    className="w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl px-6 py-8 space-y-6"
+                    className="flex-1 w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl px-6 py-8 space-y-6"
                 >
-                    <h2 className="text-2xl md:text-3xl font-bold text-white text-center tracking-tight">
+                    <h2 className="text-3xl font-bold text-white text-center tracking-tight">
                         Log in to your Account
                     </h2>
 
@@ -120,54 +139,54 @@ export default function LoginPage() {
                     </p>
                 </form>
             </section>
+            {/* Qualities Grid */}
+            <section className="px-6 py-16">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+                        <Zap className="mx-auto text-yellow-400 w-10 h-10" />
+                        <h3 className="mt-4 text-lg font-semibold text-white">⚡ Lightning Fast</h3>
+                        <p className="mt-2 text-gray-300 text-sm">
+                            Responses in &lt;600ms. Optimized for real-time.
+                        </p>
+                    </div>
 
-            {/* FEATURES SECOND ON MOBILE, FIRST ON DESKTOP */}
-            <section className="order-2 md:order-1 flex-1 flex flex-col justify-center items-center px-6 py-12 text-center md:text-left">
-                <div className="max-w-lg">
-                    {/* GRID FEATURES */}
-                    <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                        <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
-                            <Zap className="mx-auto md:mx-0 text-yellow-400 w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">⚡ Lightning Fast</h3>
-                            <p className="mt-2 text-gray-300 text-sm">
-                                6 chat responses in <span className="text-yellow-300 font-bold">&lt;600ms</span>.<br />
-                                Optimized for real-time speed.<br />
-                                <span className="text-gray-400 text-xs">
-                                    (For comparison: <span className="text-purple-300 font-semibold">GPT-4 averages ~1.3s (1300ms)</span>, and <span className="text-pink-300 font-semibold">GPT-5 is even slower</span>.)
-                                </span>
-                            </p>
-                        </div>
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+                        <Bot className="mx-auto text-pink-400 w-10 h-10" />
+                        <h3 className="mt-4 text-lg font-semibold text-white">6 AI Personalities</h3>
+                        <p className="mt-2 text-gray-300 text-sm">
+                            Unique AIs with different styles & knowledge.
+                        </p>
+                    </div>
 
-                        <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
-                            <Bot className="mx-auto md:mx-0 text-pink-400 w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">6 AI Personalities</h3>
-                            <p className="mt-2 text-gray-300 text-sm">
-                                Chat with <span className="text-pink-300 font-bold">six different AIs</span>,
-                                each with unique styles & knowledge. Select what best suits you!
-                            </p>
-                        </div>
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+                        <Cpu className="mx-auto text-emerald-400 w-10 h-10" />
+                        <h3 className="mt-4 text-lg font-semibold text-white">Optimized Backend</h3>
+                        <p className="mt-2 text-gray-300 text-sm">
+                            Low-latency API built for scale & performance.
+                        </p>
+                    </div>
 
-                        <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
-                            <Cpu className="mx-auto md:mx-0 text-emerald-400 w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">Optimized Backend</h3>
-                            <p className="mt-2 text-gray-300 text-sm">
-                                Low-latency API built for scale & performance.
-                            </p>
-                        </div>
-                        <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 text-center md:text-left shadow-lg hover:scale-105 transition">
-                            <SiGithub className="mx-auto md:mx-0 text-white w-10 h-10" />
-                            <h3 className="mt-4 text-lg font-semibold text-white">Free & Open Sourced</h3>
-                            <p className="mt-2 text-gray-300 text-sm">
-                                Explore the code, contribute, and help shape the future.<br />
-                                <Link href="https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat" target="_blank"
-                                    className="text-indigo-300 hover:text-indigo-200 underline">
-                                    ⭐ Star it on GitHub
-                                </Link>
-                            </p>
-                        </div>
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 transition">
+                        <SiGithub className="mx-auto text-white w-10 h-10" />
+                        <h3 className="mt-4 text-lg font-semibold text-white">Open Source</h3>
+                        <p className="mt-2 text-gray-300 text-sm">
+                            Explore the code, contribute, and shape the future.
+                        </p>
                     </div>
                 </div>
             </section>
+
+            {/* Footer with Buttons */}
+            <footer className="flex justify-center gap-6 py-10 border-t border-white/10">
+                <a href="https://www.linkedin.com/in/ashutosh-singh-350b33291/" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white hover:bg-white/20 transition">
+                    <SiLinkedin className="w-5 h-5" /> Meet the Developer
+                </a>
+                <a href="https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white hover:bg-white/20 transition">
+                    <SiGithub className="w-5 h-5" /> GitHub Repo
+                </a>
+            </footer>
         </main>
     )
 }
