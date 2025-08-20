@@ -149,7 +149,7 @@ export default function LoginPage() {
                             <h3 className="mt-4 text-lg font-semibold text-white">Free & Open Sourced</h3>
                             <p className="mt-2 text-gray-300 text-sm">
                                 Explore the code, contribute, and help shape the future.<br />
-                                <Link href="https://github.com/your-repo" target="_blank"
+                                <Link href="https://github.com/iiioooiso/Fiesta-Multi-Ai-Chat" target="_blank"
                                     className="text-indigo-300 hover:text-indigo-200 underline">
                                     ⭐ Star it on GitHub
                                 </Link>
